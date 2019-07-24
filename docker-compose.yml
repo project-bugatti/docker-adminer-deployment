@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  adminer:
+    image: gcmedia/adminer
+    networks:
+      - gcmedia-net
+    expose:
+      - 8081
+    environment:
+      - ADMINER_PORT=8081
+    labels:
+      - "traefik.backend=adminer"
+      - "traefik.docker.network=gcmedia-net"
+      - "traefik.enable=true"
+      - "traefik.protocol=http"
+      - "traefik.frontend.rule=Host:adminer.thegc.website"
+      - "traefik.port=8081"
+networks:
+  gcmedia-net:
